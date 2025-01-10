@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PlaceService {
+public class PlaceService implements CodeService {
     private PlaceRepository repository;
     @Autowired
     public PlaceService(PlaceRepository repository) {
@@ -23,6 +23,7 @@ public class PlaceService {
     }
 
     //takes a user input from the controller and sorts out the places depending on the dob of the user
+    @Override
     public List<PlaceEntity> getControlledPlaceList(User user) {
         List<PlaceEntity> controlledPlaceList = new ArrayList<>();
         List<PlaceEntity> allPlaces = repository.findAll();
@@ -36,6 +37,7 @@ public class PlaceService {
     }
 
     //name simplifier makes abbreviation  of a given name
+    @Override
     public String nameSimplifier(User user) {
         String simplifiedName = "";
         double d = Math.ceil(user.getUserName().length() / 2.0);
