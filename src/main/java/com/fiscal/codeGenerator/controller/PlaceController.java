@@ -30,5 +30,10 @@ public class PlaceController {
         return placeService.getControlledPlaceList(user);
     }
 
+    @PostMapping("/nameAbbreviate")
+    public String nameAbbreviation(@RequestBody User user) {
+        return placeService.nameSimplifier(user);
+    }
+
 
 }

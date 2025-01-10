@@ -31,9 +31,18 @@ public class PlaceService {
             if(place.getData_Inizio_Validita().isBefore(input)){
                 controlledPlaceList.add(place);
             }
-
         }
         return controlledPlaceList;
     }
 
+    //name simplifier makes abbreviation  of a given name
+    public String nameSimplifier(User user) {
+        String simplifiedName = "";
+        double d = Math.ceil(user.getUserName().length() / 2.0);
+        Double[] index ={0.0, d - 1.0, user.getUserName().length() - 1.0};
+            for ( double j : index) {
+                simplifiedName += user.getUserName().charAt((int)j);
+            }
+        return simplifiedName;
+    }
 }
