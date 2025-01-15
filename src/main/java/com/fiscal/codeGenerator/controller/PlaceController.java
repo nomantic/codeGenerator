@@ -44,8 +44,8 @@ public class PlaceController {
     }
 
     @PostMapping("/submitUser")
-    public List<PlaceEntity> addPlace(@RequestBody User user) {
-        return placeService.getControlledPlaceList(user);
+    public List<ValidComune> getComuni(@RequestBody User user) {
+        return placeService.getControlledComuneList(user);
     }
 
     @PostMapping("/nameAbbreviate")

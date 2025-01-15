@@ -37,6 +37,21 @@ public class PlaceService implements CodeService {
 
     public List<ValidComune> getValidComuneList() {return validComuneRepository.findAll(); }
 
+    //gets comune if they exsisted depending on user birthdate
+    public List<ValidComune> getControlledComuneList(User user) {
+        List<ValidComune> controlledComuneList = new ArrayList<>();
+        List<ValidComune> allComune = validComuneRepository.findAll();
+        LocalDate input = user.getUserDob();
+        for (ValidComune comune : allComune) {
+            if(comune.getStartDate().isBefore(input)) {
+                if (comune.getEndDate() == null || comune.getEndDate().isAfter(input)) {
+                    controlledComuneList.add(comune);
+                }
+                }
+            }
+        return controlledComuneList;
+    }
+
 
 
     //takes a user input from the controller and sorts out the places depending on the dob of the user \\ for demo database
