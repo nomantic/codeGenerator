@@ -18,7 +18,7 @@ public class Comune {
     @Column(name = "flag_capoluogo")
     private String capitalCity;
     @Column(name = "codice_belfiore")
-    private String belfireCode;
+    private String belfioreCode;
     @Column(name = "lat")
     private Double latitude;
     @Column(name = "lon")
@@ -31,12 +31,12 @@ public class Comune {
     public Comune() {
     }
 
-    public Comune(String provinceInitials, String stateCode, String placeName, String capitalCity, String belfireCode, Double latitude, Double longitude, Double areaDistance, String provinceCode) {
+    public Comune(String provinceInitials, String stateCode, String placeName, String capitalCity, String belfioreCode, Double latitude, Double longitude, Double areaDistance, String provinceCode) {
         this.provinceInitials = provinceInitials;
         this.stateCode = stateCode;
         this.placeName = placeName;
         this.capitalCity = capitalCity;
-        this.belfireCode = belfireCode;
+        this.belfioreCode = belfioreCode;
         this.latitude = latitude;
         this.longitude = longitude;
         this.areaDistance = areaDistance;
@@ -75,12 +75,12 @@ public class Comune {
         this.capitalCity = capitalCity;
     }
 
-    public String getBelfireCode() {
-        return belfireCode;
+    public String getBelfioreCode() {
+        return belfioreCode;
     }
 
-    public void setBelfireCode(String belfireCode) {
-        this.belfireCode = belfireCode;
+    public void setBelfioreCode(String belfioreCode) {
+        this.belfioreCode = belfioreCode;
     }
 
     public Double getLatitude() {
@@ -122,7 +122,7 @@ public class Comune {
                 ", stateCode='" + stateCode + '\'' +
                 ", placeName='" + placeName + '\'' +
                 ", capitalCity='" + capitalCity + '\'' +
-                ", belfireCode='" + belfireCode + '\'' +
+                ", belfireCode='" + belfioreCode + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 ", areaDistance=" + areaDistance +

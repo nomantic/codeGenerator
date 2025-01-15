@@ -38,6 +38,10 @@ public class PlaceController {
     public List<Comune> getComuneList() {
         return placeService.getComuneList();
     }
+    @GetMapping(path = "/validComuni")
+    public List<ValidComune> getValidComuneList() {
+        return placeService.getValidComuneList();
+    }
 
     @PostMapping("/submitUser")
     public List<PlaceEntity> addPlace(@RequestBody User user) {

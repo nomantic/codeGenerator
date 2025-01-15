@@ -1,10 +1,7 @@
 package com.fiscal.codeGenerator.service;
 
 import com.fiscal.codeGenerator.entity.*;
-import com.fiscal.codeGenerator.repository.ComuneRepository;
-import com.fiscal.codeGenerator.repository.NationRepository;
-import com.fiscal.codeGenerator.repository.PlaceRepository;
-import com.fiscal.codeGenerator.repository.ProvinceRepository;
+import com.fiscal.codeGenerator.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +15,14 @@ public class PlaceService implements CodeService {
     private NationRepository nationRepository;
     private ProvinceRepository provinceRepository;
     private ComuneRepository comuneRepository;
+    private ValidComuneRepository validComuneRepository;
     @Autowired
-    public PlaceService(PlaceRepository repository, NationRepository nationRepository, ProvinceRepository provinceRepository, ComuneRepository comuneRepository) {
+    public PlaceService(PlaceRepository repository, NationRepository nationRepository, ProvinceRepository provinceRepository, ComuneRepository comuneRepository, ValidComuneRepository validComuneRepository) {
         this.nationRepository = nationRepository;
         this.repository = repository;
         this.provinceRepository = provinceRepository;
         this.comuneRepository = comuneRepository;
+        this.validComuneRepository = validComuneRepository;
     }
 //for demo database
     public List<PlaceEntity> getPlaceList() {
@@ -35,6 +34,10 @@ public class PlaceService implements CodeService {
     public List<Province> getProvinceList() {return provinceRepository.findAll(); }
 
     public List<Comune> getComuneList() {return comuneRepository.findAll(); }
+
+    public List<ValidComune> getValidComuneList() {return validComuneRepository.findAll(); }
+
+
 
     //takes a user input from the controller and sorts out the places depending on the dob of the user \\ for demo database
     @Override
