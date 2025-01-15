@@ -1,7 +1,6 @@
 package com.fiscal.codeGenerator.controller;
 
-import com.fiscal.codeGenerator.entity.PlaceEntity;
-import com.fiscal.codeGenerator.entity.User;
+import com.fiscal.codeGenerator.entity.*;
 import com.fiscal.codeGenerator.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +22,21 @@ public class PlaceController {
     @GetMapping(path = "/allPlaces")
     public List<PlaceEntity> getPlaceList(){
         return placeService.getPlaceList();
+    }
+//this endpoint finds a list of all the nations
+    @GetMapping(path = "/nations")
+    public List<Nation> getNations() {
+        return placeService.getNationList();
+    }
+
+    @GetMapping(path = "/province")
+    public List<Province> getProvinceList() {
+        return placeService.getProvinceList();
+    }
+
+    @GetMapping(path = "/comuni")
+    public List<Comune> getComuneList() {
+        return placeService.getComuneList();
     }
 
     @PostMapping("/submitUser")
