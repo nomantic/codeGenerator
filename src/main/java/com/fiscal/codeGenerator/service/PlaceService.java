@@ -52,12 +52,12 @@ public class PlaceService implements CodeService {
         return controlledComuneList;
     }
 
-    //search comune by string and return comune
+    //searches comune by string and returns a province
     public Province getProvinceByComune(String comuneName) {
         List<Comune> c = getComuneList();
         Province province = null;
         for (Comune comune : c) {
-            if(comune.getPlaceName().equals(comuneName)) {
+            if(comune.getPlaceName().toLowerCase().equals(comuneName.toLowerCase())) {
                 province = getProvince(comune);
             }
         }
@@ -74,6 +74,32 @@ public class PlaceService implements CodeService {
             }
         }
         return p;
+    }
+
+    //gets province depending on which comune it's part of
+    public Province getProvinceByValidComune(ValidComune validComune) {
+        List<Province> provinces = getProvinceList();
+        Province p = null;
+        for (Province province : provinces) {
+            validComune.getProvinceInitials().equals(province.getProvinceAbbriviation());
+            p = province;
+            break;
+        }
+        return p;
+    }
+
+    //searches valid comune by name
+    public List<ValidComune> getValidComuneByName(String name) {
+        List<ValidComune> validComuneList = getValidComuneList();
+        List<ValidComune> newValidComune = new ArrayList<>();
+        for (ValidComune validComune : validComuneList) {
+            if(validComune.getPlaceName().equals(name.toUpperCase())) {
+                newValidComune.add(validComune);
+                System.out.println(validComune.getPlaceName());
+            }
+
+        }
+        return newValidComune;
     }
 
 

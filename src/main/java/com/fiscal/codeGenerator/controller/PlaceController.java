@@ -18,22 +18,15 @@ public class PlaceController {
     public PlaceController(PlaceService placeService) {
         this.placeService = placeService;
     }
-
-    @GetMapping(path = "/allPlaces")
-    public List<PlaceEntity> getPlaceList(){
-        return placeService.getPlaceList();
-    }
     //this endpoint finds a list of all the nations
     @GetMapping(path = "/nations")
     public List<Nation> getNations() {
         return placeService.getNationList();
     }
-
     @GetMapping(path = "/province")
     public List<Province> getProvinceList() {
         return placeService.getProvinceList();
     }
-
     @GetMapping(path = "/comuni")
     public List<Comune> getComuneList() {
         return placeService.getComuneList();
@@ -43,10 +36,12 @@ public class PlaceController {
         return placeService.getValidComuneList();
     }
 
+
     @PostMapping("/submitUser")
     public List<ValidComune> getComuni(@RequestBody User user) {
         return placeService.getControlledComuneList(user);
     }
+
     @PostMapping(path = "/getProvince")
     public Province getProvince(@RequestBody Comune comune) {
         return placeService.getProvince(comune);
@@ -55,6 +50,17 @@ public class PlaceController {
     @PostMapping(path = "/getProvinceByString")
     public Province getProvince(@RequestBody String comune) {
         return placeService.getProvinceByComune(comune);
+    }
+
+    @PostMapping(path = "/validComuniByName")
+    public List<ValidComune> getValidComuneByName(@RequestBody String comuneName) {
+        return placeService.getValidComuneByName(comuneName);
+    }
+
+    //gets province with a valid comune input
+    @PostMapping(path = "/provinceByValidComune")
+    public Province getProvinceByValidComune(@RequestBody ValidComune validComune) {
+        return placeService.getProvinceByValidComune(validComune);
     }
 
     @PostMapping("/nameAbbreviate")
