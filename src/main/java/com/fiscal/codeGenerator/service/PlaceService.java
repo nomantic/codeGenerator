@@ -52,6 +52,30 @@ public class PlaceService implements CodeService {
         return controlledComuneList;
     }
 
+    //search comune by string and return comune
+    public Province getProvinceByComune(String comuneName) {
+        List<Comune> c = getComuneList();
+        Province province = null;
+        for (Comune comune : c) {
+            if(comune.getPlaceName().equals(comuneName)) {
+                province = getProvince(comune);
+            }
+        }
+        return province;
+    }
+    //takes a comune as argument and returns a province
+    public Province getProvince(Comune comune) {
+        List<Province> Provinces = getProvinceList();
+        Province p = null;
+        for (Province province : Provinces) {
+           if(comune.getProvinceCode().equals(province.getProvinceCode())) {
+                p = province;
+                break;
+           }
+        }
+        return p;
+    }
+
 
 
     //takes a user input from the controller and sorts out the places depending on the dob of the user \\ for demo database
