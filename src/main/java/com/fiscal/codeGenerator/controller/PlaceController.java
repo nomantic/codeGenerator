@@ -23,7 +23,7 @@ public class PlaceController {
     public List<PlaceEntity> getPlaceList(){
         return placeService.getPlaceList();
     }
-//this endpoint finds a list of all the nations
+    //this endpoint finds a list of all the nations
     @GetMapping(path = "/nations")
     public List<Nation> getNations() {
         return placeService.getNationList();
@@ -46,6 +46,15 @@ public class PlaceController {
     @PostMapping("/submitUser")
     public List<ValidComune> getComuni(@RequestBody User user) {
         return placeService.getControlledComuneList(user);
+    }
+    @PostMapping(path = "/getProvince")
+    public Province getProvince(@RequestBody Comune comune) {
+        return placeService.getProvince(comune);
+    }
+
+    @PostMapping(path = "/getProvinceByString")
+    public Province getProvince(@RequestBody String comune) {
+        return placeService.getProvinceByComune(comune);
     }
 
     @PostMapping("/nameAbbreviate")

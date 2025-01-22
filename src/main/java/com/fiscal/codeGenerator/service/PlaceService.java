@@ -24,7 +24,7 @@ public class PlaceService implements CodeService {
         this.comuneRepository = comuneRepository;
         this.validComuneRepository = validComuneRepository;
     }
-//for demo database
+    //for demo database
     public List<PlaceEntity> getPlaceList() {
         return repository.findAll();
     }
@@ -47,9 +47,33 @@ public class PlaceService implements CodeService {
                 if (comune.getEndDate() == null || comune.getEndDate().isAfter(input)) {
                     controlledComuneList.add(comune);
                 }
-                }
             }
+        }
         return controlledComuneList;
+    }
+
+    //search comune by string and return comune
+    public Province getProvinceByComune(String comuneName) {
+        List<Comune> c = getComuneList();
+        Province province = null;
+        for (Comune comune : c) {
+            if(comune.getPlaceName().equals(comuneName)) {
+                province = getProvince(comune);
+            }
+        }
+        return province;
+    }
+    //takes a comune as argument and returns a province
+    public Province getProvince(Comune comune) {
+        List<Province> Provinces = getProvinceList();
+        Province p = null;
+        for (Province province : Provinces) {
+            if(comune.getProvinceCode().equals(province.getProvinceCode())) {
+                p = province;
+                break;
+            }
+        }
+        return p;
     }
 
 
@@ -74,9 +98,9 @@ public class PlaceService implements CodeService {
         String simplifiedName = "";
         double d = Math.ceil(user.getUserName().length() / 2.0);
         Double[] index ={0.0, d - 1.0, user.getUserName().length() - 1.0};
-            for ( double j : index) {
-                simplifiedName += user.getUserName().charAt((int)j);
-            }
+        for ( double j : index) {
+            simplifiedName += user.getUserName().charAt((int)j);
+        }
         return simplifiedName;
     }
 }
