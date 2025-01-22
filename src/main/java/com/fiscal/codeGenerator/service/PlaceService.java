@@ -81,9 +81,10 @@ public class PlaceService implements CodeService {
         List<Province> provinces = getProvinceList();
         Province p = null;
         for (Province province : provinces) {
-            validComune.getProvinceInitials().equals(province.getProvinceAbbriviation());
-            p = province;
-            break;
+            if(province.getProvinceAbbriviation().equals(validComune.getProvinceInitials())) {
+                p = province;
+                break;
+            }
         }
         return p;
     }
