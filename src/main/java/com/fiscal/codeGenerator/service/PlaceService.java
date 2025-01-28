@@ -78,29 +78,33 @@ public class PlaceService implements CodeService {
 
     //gets province depending on which comune it's part of
     public Province getProvinceByValidComune(ValidComune validComune) {
-        List<Province> provinces = getProvinceList();
-        Province p = null;
-        for (Province province : provinces) {
-            if(province.getProvinceAbbriviation().equals(validComune.getProvinceInitials())) {
-                p = province;
-                break;
-            }
-        }
+        Province p = provinceRepository.findByProvinceAbbriviation(validComune.getProvinceInitials());
         return p;
+//        List<Province> provinces = getProvinceList();
+//        Province p = null;
+//        for (Province province : provinces) {
+//            if(province.getProvinceAbbriviation().equals(validComune.getProvinceInitials())) {
+//                p = province;
+//                break;
+//            }
+//        }
+//        return p;
     }
 
     //searches valid comune by name
     public List<ValidComune> getValidComuneByName(String name) {
-        List<ValidComune> validComuneList = getValidComuneList();
-        List<ValidComune> newValidComune = new ArrayList<>();
-        for (ValidComune validComune : validComuneList) {
-            if(validComune.getPlaceName().equals(name.toUpperCase())) {
-                newValidComune.add(validComune);
-                System.out.println(validComune.getPlaceName());
-            }
-
-        }
-        return newValidComune;
+        List<ValidComune> validComune = validComuneRepository.getValidComuneByPlaceName(name);
+        return validComune;
+//        List<ValidComune> validComuneList = getValidComuneList();
+//        List<ValidComune> newValidComune = new ArrayList<>();
+//        for (ValidComune validComune : validComuneList) {
+//            if(validComune.getPlaceName().equals(name.toUpperCase())) {
+//                newValidComune.add(validComune);
+//                System.out.println(validComune.getPlaceName());
+//            }
+//
+//        }
+//        return newValidComune;
     }
 
 

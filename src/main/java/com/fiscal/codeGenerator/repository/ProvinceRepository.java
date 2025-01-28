@@ -4,4 +4,5 @@ import com.fiscal.codeGenerator.entity.Province;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProvinceRepository extends JpaRepository<Province, String> {
+    public Province findByProvinceAbbriviation(String abbr);
 }
