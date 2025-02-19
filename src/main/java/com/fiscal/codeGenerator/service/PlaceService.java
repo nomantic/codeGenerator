@@ -11,22 +11,16 @@ import java.util.List;
 
 @Service
 public class PlaceService implements CodeService {
-    private PlaceRepository repository;
     private NationRepository nationRepository;
     private ProvinceRepository provinceRepository;
     private ComuneRepository comuneRepository;
     private ValidComuneRepository validComuneRepository;
     @Autowired
-    public PlaceService(PlaceRepository repository, NationRepository nationRepository, ProvinceRepository provinceRepository, ComuneRepository comuneRepository, ValidComuneRepository validComuneRepository) {
+    public PlaceService(NationRepository nationRepository, ProvinceRepository provinceRepository, ComuneRepository comuneRepository, ValidComuneRepository validComuneRepository) {
         this.nationRepository = nationRepository;
-        this.repository = repository;
         this.provinceRepository = provinceRepository;
         this.comuneRepository = comuneRepository;
         this.validComuneRepository = validComuneRepository;
-    }
-    //for demo database
-    public List<PlaceEntity> getPlaceList() {
-        return repository.findAll();
     }
 
     public List<Nation> getNationList() {return nationRepository.findAll(); }
@@ -105,22 +99,6 @@ public class PlaceService implements CodeService {
 //
 //        }
 //        return newValidComune;
-    }
-
-
-
-    //takes a user input from the controller and sorts out the places depending on the dob of the user \\ for demo database
-    @Override
-    public List<PlaceEntity> getControlledPlaceList(User user) {
-        List<PlaceEntity> controlledPlaceList = new ArrayList<>();
-        List<PlaceEntity> allPlaces = repository.findAll();
-        LocalDate input = user.getUserDob();
-        for (PlaceEntity place : allPlaces) {
-            if(place.getData_Inizio_Validita().isBefore(input)){
-                controlledPlaceList.add(place);
-            }
-        }
-        return controlledPlaceList;
     }
 
     //name simplifier makes abbreviation  of a given name \\ for demo database
